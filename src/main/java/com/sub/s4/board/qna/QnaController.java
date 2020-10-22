@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -59,6 +60,74 @@ public class QnaController {
 		mv.addObject("path", "./qnaList");
 		mv.setViewName("common/result");
 		
+		return mv;
+	}
+	
+	@GetMapping("qnaSelect")
+	public ModelAndView getOne(BoardDTO boardDTO) throws Exception {
+		System.out.println("QnA One");
+		ModelAndView mv = new ModelAndView();
+		boardDTO = qnaService.getOne(boardDTO);
+		if(boardDTO !=null) {
+			mv.setViewName("board/boardSelect");
+			mv.addObject("dto",boardDTO);
+			mv.addObject("board", "qna");
+		}else {
+			mv.setViewName("common/result");
+			mv.addObject("msg", "No Data");
+			mv.addObject("path", "./boardList");
+		}
+		return mv;
+	}
+	
+	@GetMapping("qnaReply")
+	public ModelAndView setReply() throws Exception{
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("board/boardReply");
+		mv.addObject("board", "qna");
+		return mv;
+	}
+	
+	@PostMapping("qnaReply")
+	public ModelAndView setReply(BoardDTO boardDTO) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		int result = qnaService.setReply(boardDTO);
+		
+		String message = "Reply Write Fail";
+		
+		if(result>0) {
+			message = "Reply Write Success";
+		}
+		
+		mv.addObject("msg", message);
+		mv.addObject("path", "./qnaList");
+		mv.setViewName("common/result");
+		
+		return mv;
+	}
+	
+	@GetMapping("setUpdate")
+	public ModelAndView setUpdate() throws Exception{
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("board/boardUpdate");
+		mv.addObject("board", "qna");
+		return mv;
+	}
+	
+	@PostMapping("setUpdate")
+	public ModelAndView setUpdate(BoardDTO boardDTO) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		int result = qnaService.setUpdate(boardDTO);
+		
+		String message = "Update Fail";
+		
+		if(result>0) {
+			message = "Update Success";
+		}
+		
+		mv.addObject("msg", message);
+		mv.addObject("path","./boardList");
+		mv.setViewName("common/result");
 		return mv;
 	}
 

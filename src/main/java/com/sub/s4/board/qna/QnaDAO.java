@@ -16,7 +16,16 @@ public class QnaDAO implements BoardDAO {
 	@Autowired
 	private SqlSession sqlSession;
 	private final String namespace="com.sub.s4.board.qna.QnaDAO.";
-
+	
+	public int setReply(BoardDTO boardDTO) throws Exception{
+		return sqlSession.insert(namespace+"setReply", boardDTO);
+	}
+	
+	public int setReplyUpdate(BoardDTO boardDTO) throws Exception{
+		return sqlSession.update(namespace+"setReplyUpdate", boardDTO);
+	}
+	
+	
 	@Override
 	public int setInsert(BoardDTO boardDTO) throws Exception {
 		// TODO Auto-generated method stub
@@ -26,7 +35,7 @@ public class QnaDAO implements BoardDAO {
 	@Override
 	public int setUpdate(BoardDTO boardDTO) throws Exception {
 		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.update(namespace+"setUpdate", boardDTO);
 	}
 
 	@Override
@@ -44,7 +53,7 @@ public class QnaDAO implements BoardDAO {
 	@Override
 	public BoardDTO getOne(BoardDTO boardDTO) throws Exception {
 		// TODO Auto-generated method stub
-		return null;
+		return sqlSession.selectOne(namespace+"getOne", boardDTO);
 	}
 
 	@Override

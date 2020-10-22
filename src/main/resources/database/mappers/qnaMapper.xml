@@ -87,12 +87,18 @@
 		insert into qna values(qna_seq.nextval, #{title}, #{writer}, #{contents}, sysdate, 0, qna_seq.nextval, 0, 0)
 	</insert>
 	
-	<insert id="qnaReply" parameterType="QnaDTO">
-		insert into qna values(qna_seq.nextval, #{title}, #{writer}, #{contents}, sysdate, 0, #{ref}, #{step}, #{depth})
+	<insert id="setReply" parameterType="QnaDTO">
+		insert into qna values(qna_seq.nextval, #{title}, #{writer}, #{contents}, sysdate, 0,
+		 (select ref from qna where num=#{num}),
+		 (select step+1 from qna where num=#{num}),
+		 (select depth+1 from qna where num=#{num}))
 	</insert>
 	
-	<update id="setUpdate" parameterType="QnaDTO">
-		update qna set step=step+1 where ref=#{ref} and step>#{step}
+	<update id="setReplyUpdate" parameterType="QnaDTO">
+		update qna set step=step+1 where
+		ref=(select ref from qna where num=#{num})
+		and
+		step=(select step from qna where num=#{num})
 	</update>
 	
 	<select id="getOne" parameterType="QnaDTO" resultType="QnaDTO">
@@ -102,6 +108,10 @@
 	<delete id="setDelete" parameterType="QnaDTO">
 		delete qna where num= #{num}
 	</delete>
+	
+	<update id="setUpdate" parameterType="QnaDTO">
+		update qna set step=step+1 where ref=#{ref} and step>#{step}
+	</update>
 	
 	
 </mapper>
