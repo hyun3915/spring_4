@@ -18,12 +18,20 @@ public class NoticeController {
 	@Autowired
 	private NoticeService noticeService;
 	
+	@GetMapping("noticeWrite")
+	public ModelAndView setInsert() throws Exception{
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("board/boardWrite");
+		return mv;
+	}
+	
 	//@RequestMapping(value = "noticeList")
 	@GetMapping(value = "noticeList")
 	public ModelAndView getList(Pager pager) throws Exception{
 		ModelAndView mv = new ModelAndView();
 		List<BoardDTO> ar = noticeService.getList(pager);
 		
+		mv.addObject("board", "notice");
 		mv.addObject("list", ar);
 		mv.addObject("pager", pager);
 		System.out.println("Notice List");

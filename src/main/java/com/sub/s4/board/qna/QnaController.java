@@ -23,11 +23,19 @@ public class QnaController {
 		ModelAndView mv = new ModelAndView();
 		List<BoardDTO> ar = qnaService.getList(pager);
 		
+		mv.addObject("board", "qna");
 		mv.addObject("list",ar);
 		mv.addObject("pager", pager);
 		System.out.println("Qna List");
 		mv.setViewName("board/boardList");
 		
+		return mv;
+	}
+	
+	@GetMapping("qnaWrite")
+	public ModelAndView setInsert() throws Exception{
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("board/boardWrite");
 		return mv;
 	}
 
