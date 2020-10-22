@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sub.s4.board.qna.QnaDAO">
+
+	<select id="getList" resultType="QnaDTO" parameterType="Pager">
+		select * From(select rownum R, N.* from(SELECT * FROM qna where 
+		<choose>
+			<when test="kind == 'tt'">
+				title
+			</when>
+			
+			<when test="kind == 'wr'">
+				writer
+			</when>
+			
+			<when test="kind == 'con'">
+				contents
+			</when>
+			
+			<when test="kind == 'da'">
+				regDate
+			</when>
+			
+			<when test="kind == 'hi'">
+				hit
+			</when>
+			
+			<when test="kind == 're'">
+				ref
+			</when>
+			
+			<when test="kind == 'st'">
+				step
+			</when>
+			
+			<otherwise>
+				depth
+			</otherwise>
+			
+		</choose>
+		like '%'||#{search}||'%' order by ref desc, step asc) N) where R between #{startRow} and #{lastRow}
+	</select>
+	
+	<select id="getCount" resultType="Long" parameterType="Pager">
+		select count(num) from qna
+		where
+		<choose>
+			<when test="kind == 'tt'">
+				title
+			</when>
+			
+			<when test="kind == 'wr'">
+				writer
+			</when>
+			
+			<when test="kind == 'con'">
+				contents
+			</when>
+			
+			<when test="kind == 'da'">
+				regDate
+			</when>
+			
+			<when test="kind == 'hi'">
+				hit
+			</when>
+			
+			<when test="kind == 're'">
+				ref
+			</when>
+			
+			<when test="kind == 'st'">
+				step
+			</when>
+			
+			<otherwise>
+				depth
+			</otherwise>
+		</choose>
+		like '%' || #{search} || '%'
+	</select>
+	
+	<insert id="setInsert" parameterType="QnaDTO">
+		insert into qna values(qna_seq.nextval, #{title}, #{writer}, #{contents}, sysdate, 0, qna_seq.nextval, 0, 0)
+	</insert>
+	
+	<insert id="qnaReply" parameterType="QnaDTO">
+		insert into qna values(qna_seq.nextval, #{title}, #{writer}, #{contents}, sysdate, 0, #{ref}, #{step}, #{depth})
+	</insert>
+	
+	<update id="setUpdate" parameterType="QnaDTO">
+		update qna set step=step+1 where ref=#{ref} and step>#{step}
+	</update>
+	
+	<select id="getOne" parameterType="QnaDTO" resultType="QnaDTO">
+		select * from qna where num = #{num}
+	</select>
+	
+	<delete id="setDelete" parameterType="QnaDTO">
+		delete qna where num= #{num}
+	</delete>
+	
+	
+</mapper>
