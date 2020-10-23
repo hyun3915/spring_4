@@ -33,5 +33,11 @@ public class MemberUserDAO implements MemberDAO {
 		//id는 중복금지이기 때문에 1개만 출력
 		return sqlSession.selectOne(namespace+"getMemberLogin", memberDTO);
 	}
+	
+	@Override
+	public int setMemberJoin(MemberDTO memberDTO) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.insert(namespace+"setMemberJoin", memberDTO);
+	}
 
 }

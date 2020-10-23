@@ -29,5 +29,11 @@ public class MemberUserService implements MemberService {
 		// TODO Auto-generated method stub
 		return memberUserDAO.setMemberDelete(memberDTO);
 	}
+	
+	@Override
+	public int setMemberJoin(MemberDTO memberDTO) throws Exception {
+		// TODO Auto-generated method stub
+		return memberUserDAO.setMemberJoin(memberDTO);
+	}
 
 }

@@ -18,6 +18,26 @@ public class MemberUserController {
 	@Autowired
 	private MemberUserService memberUserService;
 	
+	@GetMapping("memberJoin") 
+	public ModelAndView setMemberJoin()throws Exception{ 
+ 		ModelAndView mv = new ModelAndView(); 
+ 		mv.setViewName("member/memberJoin"); 
+		return mv; 
+	 	} 
+		 
+	@PostMapping("memberJoin") 
+	public ModelAndView setMemberJoin(MemberDTO memberDTO)throws Exception{ 
+		ModelAndView mv = new ModelAndView(); 
+	 		 
+		int result = memberUserService.setMemberJoin(memberDTO); 
+		 
+ 		mv.setViewName("redirect:../"); 
+		 
+		return mv; 
+	} 
+
+	
+	
 	@GetMapping(value="memberDelete")
 	public ModelAndView setMemberDelete(HttpSession session) throws Exception{
 		ModelAndView mv = new ModelAndView();
