@@ -15,6 +15,17 @@ public class MemberUserDAO implements MemberDAO {
 	private SqlSession sqlSession;
 	private final String namespace="com.sub.s4.member.memberUser.MemberUserDAO.";
 
+	@Override
+	public int setMemberUpdate(MemberDTO memberDTO) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.update(namespace+"setMemberUpdate", memberDTO);
+	}
+	
+	@Override
+	public int setMemberDelete(MemberDTO memberDTO) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.delete(namespace+"setMemberDelete", memberDTO);
+	}
 	
 	@Override
 	public MemberDTO getMemberLogin(MemberDTO memberDTO) throws Exception {

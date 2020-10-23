@@ -18,6 +18,50 @@ public class MemberUserController {
 	@Autowired
 	private MemberUserService memberUserService;
 	
+	@GetMapping(value="memberDelete")
+	public ModelAndView setMemberDelete(HttpSession session) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		
+		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+		int result = memberUserService.setMemberDelete(memberDTO);
+			session.invalidate(); //유지시간을 강제로 0으로 바꿔서 로그아웃
+
+		
+		mv.setViewName("redirect:../");
+		return mv;
+		
+	}
+	
+	@PostMapping(value = "memberUpdate")
+	public ModelAndView setMemberUpdate(MemberDTO memberDTO, HttpSession session) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		
+		MemberDTO s = (MemberDTO)session.getAttribute("member"); //여기 세션에 id꺼내옴
+		memberDTO.setId(s.getId());
+		
+		int result = memberUserService.setMemberUpdate(memberDTO);
+		
+		if(result>0) {
+			s.setName(memberDTO.getName());
+			s.setEmail(memberDTO.getEmail());
+			session.setAttribute("member", s); //멤버라는 이름으로 s로 덮어씌움
+			
+		}
+		
+		mv.setViewName("redirect:./memberPage");
+		
+		return mv;
+	}
+
+	
+	@GetMapping(value = "memberUpdate")
+	public ModelAndView setMemberUpdate() throws Exception{
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("member/memberUpdate");
+		
+		return mv;
+	}
+	
 	@GetMapping(value = "memberPage")
 	public ModelAndView getMemberPage() throws Exception{
 		ModelAndView mv = new ModelAndView();
