@@ -9,6 +9,8 @@
         <typeAlias type="java.lang.Long" alias="Long"/>
         <typeAlias type="com.sub.s4.board.notice.NoticeDTO" alias="NoticeDTO"/>
         <typeAlias type="com.sub.s4.board.qna.QnaDTO" alias="QnaDTO"/>
+        <typeAlias type="com.sub.s4.member.MemberDTO" alias="MemberDTO"/>
+        <typeAlias type="com.sub.s4.member.memberUser.MemberUserDTO" alias="MemberUserDTO"/>
         <typeAlias type="com.sub.s4.util.Pager" alias="Pager"/>
         <typeAlias type="com.sub.s4.board.BoardDTO" alias="BoardDTO"/>
      

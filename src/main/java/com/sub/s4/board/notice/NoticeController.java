@@ -94,10 +94,12 @@ public class NoticeController {
 	}
 	
 	@GetMapping("noticeUpdate")
-	public ModelAndView setUpdate() throws Exception{
+	public ModelAndView setUpdate2(BoardDTO boardDTO) throws Exception{
 		ModelAndView mv = new ModelAndView();
+		BoardDTO result = noticeService.getOne(boardDTO);
 		mv.setViewName("board/boardUpdate");
-		mv.addObject("board", "notice");
+		mv.addObject("board","notice");
+		mv.addObject("dto",result);
 		return mv;
 	}
 	
@@ -109,13 +111,13 @@ public class NoticeController {
 		if(result>0) {
 			message = "Update Success!";
 		}
+		
 		mv.addObject("msg",message);
-		mv.addObject("path", "./boardList");
+		mv.addObject("path", "./noticeList");
 		mv.setViewName("common/result");
 		
 		return mv;
 	}
-	
 
 
 }
