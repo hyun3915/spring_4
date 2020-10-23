@@ -13,7 +13,7 @@
 
 <div class="container">
 	<h3>Member Login Page</h3>
-<form action="/memberLogin" method="post">
+<form action="./memberLogin" method="post">
     <div class="form-group">
       <label for="id">Id:</label>
       <input type="text" class="form-control" id="id" placeholder="Enter id" name="id">

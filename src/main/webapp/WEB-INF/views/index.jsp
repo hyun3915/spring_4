@@ -1,5 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
+
 <html>
 <head>
 	<title>Home</title>
@@ -13,6 +13,14 @@
   <h3>Right Aligned Navbar</h3>
   <p>The .navbar-right class is used to right-align navigation bar buttons.</p>
   <div>
+  <c:if test="${not empty member}">
+  	<h1>Login Success</h1>
+  </c:if>
+  
+  <c:if test="${empty member}">
+  	<h1>Login Fail</h1>
+  </c:if>
+  
   <img alt="main Image" src="./resources/images/index/suhyun.jpg">
   </div>
 </div>
