@@ -18,6 +18,21 @@ public class MemberUserController {
 	@Autowired
 	private MemberUserService memberUserService;
 	
+	@GetMapping(value = "memberLogout")
+	public ModelAndView getMemberLogout(HttpSession session) throws Exception{
+		//웹브라우저 종료
+		//일정시간 경과되면 종료(로그인 후에 요청이 발생하면 시간이 연장)
+		//MemberDTO를 Null로 대체
+		//유지시간을 강제로 0으로 변경
+		//웹브라우저별로 session이 적용
+		session.invalidate();
+		
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("redirect:../");
+		
+		return mv;
+	}
+	
 	//getMemberLogin
 	@GetMapping(value = "memberLogin")
 	public ModelAndView getMemberLogin() throws Exception{

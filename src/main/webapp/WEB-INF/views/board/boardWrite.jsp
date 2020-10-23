@@ -25,7 +25,7 @@
     
     <div class="form-group">
       <label for="writer">Writer:</label>
-      <input type="text" class="form-control" id="writer" placeholder="Enter writer" name="writer">
+      <input type="text" class="form-control" readonly="readonly" value="${member.id}" id="writer" placeholder="Enter writer" name="writer">
     </div>
    
    <div class="form-group">
@@ -34,8 +34,7 @@
     </div>
     
     <input type="button" class="btn btn-primary" value="Write" id="btn">
-    <button type="submit" class="btn btn-default">Write</button>
-    
+    <button type="submit" class="btn btn-default"">Write</button>
   </form>
 </div>
 

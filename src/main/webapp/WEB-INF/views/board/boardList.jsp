@@ -75,9 +75,9 @@
      </c:if>
   </div>
   
-  
+  <c:if test="${not empty member}">
   <a href="./${board}Write" class="btn btn-danger">WRITE</a>
-  
+  </c:if>
 </div>
 
 

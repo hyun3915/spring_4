@@ -23,7 +23,7 @@
     	<c:choose>
     		<c:when test="${not empty member}">
     			<li><a href="${pageContext.request.contextPath}/member/memberJoin"><span class="glyphicon glyphicon-user"></span> MyPage</a></li>
-     			<li><a href="${pageContext.request.contextPath}/member/memberLogin"><span class="glyphicon glyphicon-log-in"></span> LogOut</a></li>
+     			<li><a href="${pageContext.request.contextPath}/member/memberLogout"><span class="glyphicon glyphicon-log-in"></span> LogOut</a></li>
     		</c:when>
     		<c:otherwise>
     			<li><a href="${pageContext.request.contextPath}/member/memberJoin"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
