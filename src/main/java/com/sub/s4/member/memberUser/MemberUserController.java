@@ -18,6 +18,14 @@ public class MemberUserController {
 	@Autowired
 	private MemberUserService memberUserService;
 	
+	@GetMapping(value = "memberPage")
+	public ModelAndView getMemberPage() throws Exception{
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("member/memberPage");
+		
+		return mv;
+	}
+	
 	@GetMapping(value = "memberLogout")
 	public ModelAndView getMemberLogout(HttpSession session) throws Exception{
 		//웹브라우저 종료
