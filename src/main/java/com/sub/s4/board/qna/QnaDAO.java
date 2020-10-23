@@ -23,8 +23,7 @@ public class QnaDAO implements BoardDAO {
 	
 	public int setReplyUpdate(BoardDTO boardDTO) throws Exception{
 		return sqlSession.update(namespace+"setReplyUpdate", boardDTO);
-	}
-	
+	}	
 	
 	@Override
 	public int setInsert(BoardDTO boardDTO) throws Exception {
@@ -37,11 +36,12 @@ public class QnaDAO implements BoardDAO {
 		// TODO Auto-generated method stub
 		return sqlSession.update(namespace+"setUpdate", boardDTO);
 	}
+	
 
 	@Override
 	public int setDelete(BoardDTO boardDTO) throws Exception {
 		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.delete(namespace+"setDelete", boardDTO);
 	}
 
 	@Override

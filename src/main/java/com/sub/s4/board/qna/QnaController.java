@@ -106,29 +106,48 @@ public class QnaController {
 		return mv;
 	}
 	
-	@GetMapping("setUpdate")
-	public ModelAndView setUpdate() throws Exception{
+	@GetMapping("qnaUpdate")
+	public ModelAndView setUpdate2(BoardDTO boardDTO) throws Exception{
 		ModelAndView mv = new ModelAndView();
+		BoardDTO result = qnaService.getOne(boardDTO);
 		mv.setViewName("board/boardUpdate");
-		mv.addObject("board", "qna");
+		mv.addObject("board","qna");
+		mv.addObject("dto",result);
 		return mv;
 	}
 	
-	@PostMapping("setUpdate")
+	@PostMapping("qnaUpdate")
 	public ModelAndView setUpdate(BoardDTO boardDTO) throws Exception{
 		ModelAndView mv = new ModelAndView();
 		int result = qnaService.setUpdate(boardDTO);
-		
-		String message = "Update Fail";
-		
+		String message = "Update Fail!";
 		if(result>0) {
-			message = "Update Success";
+			message = "Update Success!";
 		}
 		
-		mv.addObject("msg", message);
-		mv.addObject("path","./boardList");
+		mv.addObject("msg",message);
+		mv.addObject("path", "./qnaList");
 		mv.setViewName("common/result");
+		
 		return mv;
+	}
+	
+	@GetMapping(value="qnaDelete")
+	public ModelAndView setDelete(BoardDTO boardDTO) throws Exception{
+		System.out.println("Qna Delete");
+		ModelAndView mv = new ModelAndView();
+		int result = qnaService.setDelete(boardDTO);
+		String message = "Delete Fail!";
+		
+		if(result>0) {
+			message = "Delete Success!";
+		}
+		mv.setViewName("common/result");
+		mv.addObject("msg",message);
+		mv.addObject("path", "./qnaList");
+		
+		return mv;
+		
 	}
 
 }

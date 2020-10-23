@@ -58,6 +58,24 @@ public class NoticeController {
 		return mv;
 	}
 	
+	@GetMapping(value="noticeDelete")
+	public ModelAndView setDelete(BoardDTO boardDTO) throws Exception{
+		System.out.println("Notice Delete");
+		ModelAndView mv = new ModelAndView();
+		int result = noticeService.setDelete(boardDTO);
+		String message = "Delete Fail!";
+		
+		if(result>0) {
+			message = "Delete Success!";
+		}
+		mv.setViewName("common/result");
+		mv.addObject("msg",message);
+		mv.addObject("path", "./noticeList");
+		
+		return mv;
+		
+	}
+	
 	@GetMapping("noticeSelect")
 	public ModelAndView getOne(BoardDTO boardDTO) throws Exception {
 		System.out.println("Notice One");
@@ -74,6 +92,30 @@ public class NoticeController {
 		}
 		return mv;
 	}
+	
+	@GetMapping("noticeUpdate")
+	public ModelAndView setUpdate() throws Exception{
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("board/boardUpdate");
+		mv.addObject("board", "notice");
+		return mv;
+	}
+	
+	@PostMapping("noticeUpdate")
+	public ModelAndView setUpdate(BoardDTO boardDTO) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		int result = noticeService.setUpdate(boardDTO);
+		String message = "Update Fail!";
+		if(result>0) {
+			message = "Update Success!";
+		}
+		mv.addObject("msg",message);
+		mv.addObject("path", "./boardList");
+		mv.setViewName("common/result");
+		
+		return mv;
+	}
+	
 
 
 }

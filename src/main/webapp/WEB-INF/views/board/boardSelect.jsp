@@ -36,15 +36,15 @@
   </table>
   <input type="button" title="${dto.num}" value="Delete" class="btn btn-warning" id="del">
   <input type="button" value="Update" id="update" class="btn btn-primary">
-  <c:if test="${board ne 'notice' }">
+  <c:if test="${board ne 'notice'}">
   <a href="./${board}Reply?num=${dto.num}" class="btn btn-info">Reply</a>
   </c:if>
 </div>
 
 <script type="text/javascript">
    $("#update").click(function() {
-      location.href="./noticeUpdate?num=${dto.num}";
-   })
+      location.href="./${board}Update?num=${dto.num}";
+   });
 
    //$("css선택자").action();
    $("#del").click(function() {
@@ -55,7 +55,7 @@
       //$("선택자").attr("속성명")
       var num =$(this).attr("title");
       
-      location.href="./noticeDelete?num="+num;
+      location.href="./${board}Delete?num="+num;
    })
 
    
