@@ -5,10 +5,11 @@
 <table class="table table-border">
 	<c:forEach items="${list}" var="dto">
 		<tr>
-			<td>${dto.num}</td>
+			<td id="num${dto.num}">${dto.num}</td>
 			<td>${dto.contents}</td>
 			<td>${dto.writer}</td>
 			<td>${dto.regDate}</td>
+			<td> <button class="btn btn-danger del" id="${dto.num}">DEL</button> </td>
 		</tr>
 	</c:forEach>
 </table>

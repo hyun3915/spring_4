@@ -33,7 +33,7 @@
 </div>
 
   <div id="result"></div>
-  <button class="btn btn-danger">더보기</button>
+  <button class="btn btn-danger del">더보기</button>
 
 </div>
 
@@ -41,12 +41,29 @@
 	getList();
 	
 	//*******************************************
+	$("#result").on("click", ".del", function() {
+		var num = $(this).attr("id");
+		$.post("./memoDelete", {num:num},function(data) {
+			data=data.trim();
+			if(data>0){
+				getList();
+				alert("Delete Success!")
+			}else{
+				alert("Delete Fail!");
+			}
+		});
+	});
+	
+	//*******************************************
 	$("#write").click(function() {
 		var writer = $("#writer").val();
 		var contents = $("#contents").val();
 		$.post("./memoWrite",{writer:writer, contents:contents}, function(result) {
 			alert(result);
-		})
+			$("#writer").val('');
+			$("#contents").val('');
+			getList();
+		});
 	});
 	
 	//{파라미터이름:writer에 들어가있는 변수명}
@@ -57,6 +74,8 @@
 			$("#result").html(data);
 		});
 	}
+		
+	
 </script>
 
 </body>

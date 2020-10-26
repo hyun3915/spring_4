@@ -19,6 +19,19 @@ public class MemoController {
 	private MemoService memoService;
 	
 	
+	@PostMapping("memoDelete")
+	public ModelAndView setDelete(MemoDTO memoDTO) throws Exception{
+		
+		ModelAndView mv = new ModelAndView();
+		int result = memoService.setDelete(memoDTO);
+		
+		
+		mv.addObject("msg",result);
+		mv.setViewName("common/ajaxResult");
+		
+		return mv;
+	}
+	
 	@GetMapping("memoList")
 	public ModelAndView getList(Pager pager) throws Exception{
 		System.out.println("Memo List");

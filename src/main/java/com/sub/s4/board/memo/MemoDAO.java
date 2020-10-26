@@ -36,6 +36,10 @@ public class MemoDAO{
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne(namespace+"getCount", pager);
 	}
+	
+	public int setDelete(MemoDTO memoDTO) throws Exception{
+		return sqlSession.delete(namespace+"setDelete", memoDTO);
+	}
 
 
 }

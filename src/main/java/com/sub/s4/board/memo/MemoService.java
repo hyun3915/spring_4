@@ -29,5 +29,9 @@ public class MemoService {
 		
 		return memoDAO.getList(pager);
 	}
+	
+	public int setDelete(MemoDTO memoDTO) throws Exception{
+		return memoDAO.setDelete(memoDTO);
+	}
 
 }

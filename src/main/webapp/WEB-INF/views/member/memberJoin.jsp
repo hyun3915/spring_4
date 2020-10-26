@@ -18,6 +18,7 @@
     <div class="form-group">
       <label for="id">Id:</label>
       <input type="text" class="form-control" id="id" placeholder="Enter id" name="id">
+	  <div id="idResult"></div>
     </div>
     
     <div class="form-group">
