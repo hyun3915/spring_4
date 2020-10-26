@@ -29,7 +29,8 @@
 	
 	<div class="form-group">
        <input type="button" class="btn btn-primary" value="WRITE" id="write">
-
+	</div>
+	
 </div>
 
   <div id="result"></div>

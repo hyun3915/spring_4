@@ -73,7 +73,9 @@ public class MemoController {
 	}
 	
 	@GetMapping("memoPage")
-	public void memoPageg() throws Exception{
+	public void memoPage() throws Exception{
 		
 	}
+	
+	
 }

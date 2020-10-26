@@ -46,5 +46,16 @@
   </form>
 </div>
 
+<script type="text/javascript">
+	$("#id").blur(function(data) {
+		var sId = $('#id').val();
+		if(data ==1) {
+			$("#idResult").text("중복된 ID입니다.");
+		}else{
+			$("#idResult").text("사용 가능한 ID입니다.");
+		}
+	});
+</script>
+
 </body>
 </html>

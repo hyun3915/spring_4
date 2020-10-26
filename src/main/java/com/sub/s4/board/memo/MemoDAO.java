@@ -17,6 +17,7 @@ public class MemoDAO{
 	private SqlSession sqlSession;
 	private final String namespace="com.sub.s4.board.memo.MemoDAO.";
 	
+	
 	public MemoDTO getOne(MemoDTO memoDTO) throws Exception{
 		return sqlSession.selectOne(namespace+"getOne", memoDTO);
 	}

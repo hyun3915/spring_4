@@ -13,6 +13,7 @@ public class MemoService {
 	@Autowired
 	private MemoDAO memoDAO;
 	
+	
 	public MemoDTO getOne(MemoDTO memoDTO) throws Exception{
 		return memoDAO.getOne(memoDTO);
 	}

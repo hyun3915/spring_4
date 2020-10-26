@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.sub.s4.board.memo.MemoDTO;
 import com.sub.s4.member.MemberDTO;
 
 @Controller
@@ -17,6 +18,7 @@ public class MemberUserController {
 	
 	@Autowired
 	private MemberUserService memberUserService;
+
 	
 	@GetMapping("memberJoin") 
 	public ModelAndView setMemberJoin()throws Exception{ 

@@ -3,6 +3,7 @@ package com.sub.s4.member.memberUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.sub.s4.board.memo.MemoDTO;
 import com.sub.s4.member.MemberDTO;
 import com.sub.s4.member.MemberService;
 
