@@ -13,6 +13,7 @@
         <typeAlias type="com.sub.s4.member.memberUser.MemberUserDTO" alias="MemberUserDTO"/>
         <typeAlias type="com.sub.s4.util.Pager" alias="Pager"/>
         <typeAlias type="com.sub.s4.board.BoardDTO" alias="BoardDTO"/>
+        <typeAlias type="com.sub.s4.board.memo.MemoDTO" alias="MemoDTO"/>
      
      </typeAliases>
   
