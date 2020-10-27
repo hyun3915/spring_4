@@ -6,6 +6,16 @@
 <head>
 <meta charset="UTF-8">
 <c:import url="../template/bootStrap.jsp"></c:import>
+<style type="text/css">
+	.idCheck0{
+		color: blue;
+	}
+	
+	.idCheck1{
+		color: red;
+	}
+	
+</style>
 <title>Insert title here</title>
 </head>
 <body>
@@ -47,13 +57,25 @@
 </div>
 
 <script type="text/javascript">
-	$("#id").blur(function(data) {
-		var sId = $('#id').val();
-		if(data ==1) {
-			$("#idResult").text("중복된 ID입니다.");
-		}else{
-			$("#idResult").text("사용 가능한 ID입니다.");
+
+	$("#id").blur(function() {
+		var id = $(this).val();
+		$.get("./memberIdCheck?id="+id, function(data) {
+			//a/true/0는 사용가능, b/false/1는 사용불가
+		
+		data=data.trim();
+			
+		var str = "중복된 ID입니다.";
+		$("#idResult").addClass("idCheck1");
+		
+		if(data ==0) {
+			str="사용 가능한 ID입니다.";
+			$("#idResult").removeClass("idCheck1").addClass("idCheck0");
 		}
+		
+		$("#idResult").html(str);
+		
+		});
 	});
 </script>
 

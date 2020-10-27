@@ -1,6 +1,7 @@
 package com.sub.s4.member;
 
 public interface MemberService {
+	public MemberDTO getMemberIdCheck(MemberDTO memberDTO) throws Exception;
 	
 	public MemberDTO getMemberLogin(MemberDTO memberDTO) throws Exception;
 	

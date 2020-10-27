@@ -14,7 +14,14 @@ public class MemberUserDAO implements MemberDAO {
 	@Autowired
 	private SqlSession sqlSession;
 	private final String namespace="com.sub.s4.member.memberUser.MemberUserDAO.";
-
+	
+	
+	@Override
+	public MemberDTO getMemberIdCheck(MemberDTO memberDTO) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(namespace+"getMemberIdCheck", memberDTO);
+	}
+	
 	@Override
 	public int setMemberUpdate(MemberDTO memberDTO) throws Exception {
 		// TODO Auto-generated method stub
