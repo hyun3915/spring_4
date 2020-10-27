@@ -110,7 +110,7 @@
 	</delete>
 	
 	<update id="setUpdate" parameterType="QnaDTO" >
-		update qna set step=step+1 where ref=#{ref} and step>#{step}
+		update qna set title=#{title}, contents=#{contents} where num=#{num}
 	</update>
 	
 	

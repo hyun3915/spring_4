@@ -23,7 +23,7 @@
 
 <div class="container">
 	<h3>Member Join Page</h3>
-<form action="./memberJoin" method="post" id="frm">
+<form action="./memberJoin" method="post" id="frm" enctype="multipart/form-data">
 
     <div class="form-group">
       <label for="id">Id:</label>
@@ -52,6 +52,11 @@
       <label for="email">Email:</label>
       <input type="text" class="form-control empty" id="email" placeholder="Enter email" name="email">
 	  <div class="emptyResult"></div>
+    </div>
+    
+    <div class="form-group">
+      <label for="photo">Photo:</label>
+      <input type="file" class="form-control" id="photo" name="photo">
     </div>
     
     <input type="button" value="Join" class="btn btn-default" id="join">
