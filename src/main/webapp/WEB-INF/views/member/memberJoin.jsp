@@ -111,23 +111,27 @@
 		idCheck=false;
 		var id = $(this).val();
 		if(id!=''){
-		$.get("./memberIdCheck?id="+id, function(data) {
-			//a/true/0는 사용가능, b/false/1는 사용불가
-		
-		data=data.trim();
 			
-		var str = "중복된 ID입니다.";
-		$("#idResult").removeClass("idCheck0").addClass("idCheck1");
-		
-		if(data ==0) {
-			str="사용 가능한 ID입니다.";
-			$("#idResult").removeClass("idCheck1").addClass("idCheck0");
-			idCheck=true;
-		}
-		
-		$("#idResult").html(str);
-		
-		});
+			$.ajax({
+				url : "./memberIdCheck",
+				type : "GET",
+				data : {id:id}, //파라미터로 id를 넘김
+				success : function(data) {
+					data=data.trim();
+					
+					var str = "중복된 ID입니다.";
+					$("#idResult").removeClass("idCheck0").addClass("idCheck1");
+					
+					if(data ==0) {
+						str="사용 가능한 ID입니다.";
+						$("#idResult").removeClass("idCheck1").addClass("idCheck0");
+						idCheck=true;
+					}
+					
+					$("#idResult").html(str);
+				}
+			});
+			
 		}else{
 			$("#idResult").html("ID는 필수항목입니다.");
 			$("#idResult").removeClass("idCheck0").addClass("idCheck1");
