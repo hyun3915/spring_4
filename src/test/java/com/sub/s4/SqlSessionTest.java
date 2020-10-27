@@ -13,7 +13,7 @@ public class SqlSessionTest extends MyTestCase {
 	
 	@Test
 	public void test() {
-		assertNotNull(sqlSession);
+		assertNotNull(sqlSession.getConnection());
 	}
 
 }
