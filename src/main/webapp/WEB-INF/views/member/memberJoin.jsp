@@ -66,12 +66,14 @@
 	
 	function emptyCheck() {
 		emptyCheckResult=true;
-		$(".emptyResult").removeClass("idCheck0").addClass("idCheck1");
+		$(".emptyResult").removeClass("idCheck1");
+		$(".emptyResult").html('');
 		$(".empty").each(function() {
 			var data = $(this).val();
 			if(data==''){
 				emptyCheckResult=false;
 				$(this).next().html("필수항목입니다.");
+				$(".emptyResult").addClass("idCheck1");
 			}
 		});
 	}
@@ -101,12 +103,8 @@
 		//중복체크 안했거나, 사용불가능한 ID라면
 		emptyCheck();
 		if(idCheck && pwCheck && emptyCheckResult){
-			alert("Ok");
-		}else{
-			alert("No");
+			$("#frm").submit();
 		}
-		
-		//$("#frm").submit();
 	});
 
 	$("#id").blur(function() {
