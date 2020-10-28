@@ -2,6 +2,10 @@ package com.sub.s4.board;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
+import org.springframework.web.multipart.MultipartFile;
+
 import com.sub.s4.util.Pager;
 
 public interface BoardService {
