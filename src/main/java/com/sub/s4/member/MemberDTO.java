@@ -1,12 +1,22 @@
 package com.sub.s4.member;
 
-public class MemberDTO {
+import com.sub.s4.member.memberFile.MemberFileDTO;
+
+public class MemberDTO extends MemberFileDTO{
 	private long num;
 	private String id;
 	private String pw;
 	private String name;
 	private String email;
+	private MemberFileDTO memberFileDTO;
 	
+	
+	public MemberFileDTO getMemberFileDTO() {
+		return memberFileDTO;
+	}
+	public void setMemberFileDTO(MemberFileDTO memberFileDTO) {
+		this.memberFileDTO = memberFileDTO;
+	}
 	public long getNum() {
 		return num;
 	}

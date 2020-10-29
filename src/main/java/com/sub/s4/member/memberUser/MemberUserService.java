@@ -31,6 +31,10 @@ public class MemberUserService implements MemberService {
 	@Autowired
 	private FileSaver filesaver;
 	
+	public MemberFileDTO getOne(MemberDTO memberDTO) throws Exception{
+		return memberFileDAO.getOne(memberDTO);
+	}
+	
 	@Override
 	public MemberDTO getMemberIdCheck(MemberDTO memberDTO) throws Exception {
 		// TODO Auto-generated method stub
@@ -61,17 +65,20 @@ public class MemberUserService implements MemberService {
 		  String path = session.getServletContext().getRealPath("/resources/upload/member");
 		  File file = new File(path);
 		  
-	      String fileName = filesaver.saveCopy(file, photo);
-	      System.out.println(file);
-	      
-	      //memberFile Insert
-	      MemberFileDTO memberFileDTO = new MemberFileDTO();
-	      memberFileDTO.setId(memberDTO.getId());
-	      memberFileDTO.setFileName(fileName);
-	      memberFileDTO.setOriName(photo.getOriginalFilename());
+	      String fileName="";
 	      
 	      int result = memberUserDAO.setMemberJoin(memberDTO);
-	      result = memberFileDAO.setInsert(memberFileDTO);
+	      
+	      if(photo.getSize() != 0) { //size가 0이 아닐때(작은 파일 올려도 OK)셋팅
+	    	  fileName = filesaver.saveCopy(file, photo);
+	    	  //memberFile Insert 셋팅
+		      MemberFileDTO memberFileDTO = new MemberFileDTO();
+		      memberFileDTO.setId(memberDTO.getId());
+		      memberFileDTO.setFileName(fileName);
+		      memberFileDTO.setOriName(photo.getOriginalFilename());
+	    	  System.out.println(file);
+	    	  result = memberFileDAO.setInsert(memberFileDTO);
+	      }
 	      
 	      return result;
 	   }

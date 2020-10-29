@@ -12,9 +12,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.sub.s4.board.memo.MemoDTO;
 import com.sub.s4.member.MemberDTO;
+import com.sub.s4.member.memberFile.MemberFileDTO;
 
 @Controller
-@RequestMapping("/member/**")
+@RequestMapping("/member/**") //member로 시작하는건 다 여기로 오게하기
 public class MemberUserController {
 	
 	@Autowired
@@ -106,9 +107,12 @@ public class MemberUserController {
 	@GetMapping(value = "memberPage")
 	public ModelAndView getMemberPage() throws Exception{
 		ModelAndView mv = new ModelAndView();
+//		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+//		MemberFileDTO memberFileDTO = memberUserService.getOne(memberDTO);
+//		mv.addObject("file", memberFileDTO);
 		mv.setViewName("member/memberPage");
 		
-		return mv;
+		return mv; //memberPage.jsp로 이동만
 	}
 	
 	@GetMapping(value = "memberLogout")

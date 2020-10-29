@@ -9,9 +9,26 @@
 		select id from member_sub where id=#{id}
 	</select>
 
-	<select id="getMemberLogin" parameterType="MemberDTO" resultType="MemberUserDTO">
-		select * from member_sub where id=#{id} and pw=#{pw}
+	<select id="getMemberLogin" parameterType="MemberDTO" resultMap="getMemberLoginResult">
+		select M.*, F.*, F.filename, F.oriname
+		from member_sub M inner join memberfile F
+		on (M.id = F.id)
+		where M.id = #{id} and M.pw=#{pw}
 	</select>
+	
+	<resultMap type="MemberUserDTO" id="getMemberLoginResult">
+		<id column="num" property="num"></id>
+		<result column="id" property="id"/>
+		<result column="pw" property="pw"/>
+		<result column="name" property="name"/>
+		<result column="email" property="email"/>
+		<association property="memberFileDTO" javaType="MemberFileDTO">
+			<id column="num" property="num"></id>
+			<result column="id" property="id"/>
+			<result column="fileName" property="fileName"/>
+			<result column="oriName" property="oriName"/>
+		</association>
+	</resultMap>
 	
 	<update id="setMemberUpdate" parameterType="MemberDTO">
 		update member_sub set name=#{name}, email=#{email} where id=#{id}

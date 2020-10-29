@@ -5,7 +5,17 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<style type="text/css">
 
+	#f{
+		display: none;
+	}
+	
+    .del {
+        color: red;
+        font-weight: bold;
+    }
+</style>
 <c:import url="../template/bootStrap.jsp"></c:import>
 
 <title>Insert title here</title>
@@ -33,17 +43,31 @@
       <textarea class="form-control" rows="5" id="contents" name ="contents"></textarea>
     </div>
     
-    <div class="form-group">
-      <label for="files">File:</label>
-      <input type="file" class="form-control" id="file" name="files">
-    </div>
+    <input type="button" value="FileAdd" class="btn btn-info" id="fileAdd">
     
-    <input type="button" class="btn btn-primary" value="Write" id="btn">
-    <button type="submit" class="btn btn-default"">Write</button>
+    <div id= "files">
+    <div id="f">
+	  <div class="input-group">
+        <input id="files" type="file" class="form-control" name="files">
+        <span class="input-group-addon del">DEL</span>
+      </div>
+	</div>
+	</div>
+     <div class="form-group">
+  	   <label></label>
+    	<input type="button" class="btn btn-primary form-control" value="Write" id="btn">
+    	<button type="submit" class="btn btn-default form-control">Write</button>
+     </div>
+
   </form>
 </div>
 
-<script type="text/javascript" src="../resources/js/boardWrite.js"></script>
+<script type="text/javascript">
+	$("#fileAdd").click(function() {
+		var f = $("#f").html().trim();
+		$("#files").append(f);
+	});
+</script>
 
 </body>
 </html>
