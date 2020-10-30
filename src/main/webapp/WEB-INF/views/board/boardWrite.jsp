@@ -5,22 +5,20 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<style type="text/css">
-
-	#f{
-		display: none;
-	}
-	
-    .del {
-        color: red;
-        font-weight: bold;
-    }
-</style>
-<c:import url="../template/bootStrap.jsp"></c:import>
-
 <title>Insert title here</title>
-</head>
-<body>
+<c:import url="../template/bootStrap.jsp"></c:import> 
+ <style type="text/css"> 
+ 	#f { 
+ 		display: none; 
+ 	} 
+ 	.del { 
+ 		color: red; 
+ 		font-weight: bold; 
+ 		cursor: pointer; 
+ 	} 
+ </style> 
+ </head> 
+<body> 
 
 <c:import url="../template/header.jsp"></c:import>>
 
@@ -35,37 +33,50 @@
     
     <div class="form-group">
       <label for="writer">Writer:</label>
-      <input type="text" class="form-control" readonly="readonly" value="${member.id}" id="writer" placeholder="Enter writer" name="writer">
+      <input type="text" class="form-control" value="${member.id}" id="writer" placeholder="Enter writer" name="writer">
     </div>
    
    <div class="form-group">
       <label for="contents">Contents:</label>
       <textarea class="form-control" rows="5" id="contents" name ="contents"></textarea>
     </div>
-    
     <input type="button" value="FileAdd" class="btn btn-info" id="fileAdd">
     
-    <div id= "files">
-    <div id="f">
-	  <div class="input-group">
-        <input id="files" type="file" class="form-control" name="files">
-        <span class="input-group-addon del">DEL</span>
-      </div>
-	</div>
-	</div>
-     <div class="form-group">
-  	   <label></label>
-    	<input type="button" class="btn btn-primary form-control" value="Write" id="btn">
-    	<button type="submit" class="btn btn-default form-control">Write</button>
-     </div>
+ <div id="files"> 
 
-  </form>
-</div>
+</div>   
+<div class="form-group"> 
+ <label></label> 
+   <input type="button" class="btn btn-primary form-control" value="Write" id="btn"> 
+   <button type="submit" class="btn btn-default form-control">Write</button> 
+    </div> 
+</form> 
+   
+<div id="f"> 
+  	  <div class="input-group"> 
+       <input id="files" type="file" class="form-control" name="files"> 
+        <span class="input-group-addon del">DEL</span> 
+     </div> 
+  </div>   
+</div> 
 
 <script type="text/javascript">
+
+	var count = 0;
+	
+	$("#files").on("click",".del", function() {
+		$(this).parent().remove();
+		count--;
+	});
+	
 	$("#fileAdd").click(function() {
+		if(count<5){
 		var f = $("#f").html().trim();
-		$("#files").append(f);
+			$("#files").append(f);
+			count++;
+		}else{
+			alert("첨부파일은 최대 5개입니다.")
+		}
 	});
 </script>
 
