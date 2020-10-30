@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.sub.s4.board.BoardDAO;
 import com.sub.s4.board.BoardDTO;
+import com.sub.s4.board.file.BoardFileDTO;
 import com.sub.s4.util.Pager;
 
 @Repository
@@ -17,8 +18,15 @@ public class QnaDAO implements BoardDAO {
 	private SqlSession sqlSession;
 	private final String namespace="com.sub.s4.board.qna.QnaDAO.";
 	
+	public int setInsertFile(BoardFileDTO boardFileDTO) throws Exception{
+		return sqlSession.insert(namespace+"setInsertFile", boardFileDTO);
+	}
 	public int setReply(BoardDTO boardDTO) throws Exception{
 		return sqlSession.insert(namespace+"setReply", boardDTO);
+	}
+	
+	public Long getNum() throws Exception{
+		return sqlSession.selectOne(namespace+"getNum");
 	}
 	
 	public int setReplyUpdate(BoardDTO boardDTO) throws Exception{

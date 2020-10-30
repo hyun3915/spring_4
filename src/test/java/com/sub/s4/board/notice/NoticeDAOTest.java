@@ -17,7 +17,7 @@ public class NoticeDAOTest extends MyTestCase{
 	@Autowired
 	private NoticeDAO noticeDAO;
 	
-	@Test
+	//@Test
 	public void setInsertFileTest() throws Exception{
 		BoardFileDTO boardFileDTO = new BoardFileDTO();
 		boardFileDTO.setNum(3);

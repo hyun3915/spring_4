@@ -22,6 +22,11 @@ public class NoticeDAO implements BoardDAO {
 		return sqlSession.insert(namespace+"setInsertFile", boardFileDTO);
 	}
 	
+	public Long getNum() throws Exception{
+		
+		return sqlSession.selectOne(namespace+"getNum");
+	}
+	
 	@Override
 	public int setInsert(BoardDTO boardDTO) throws Exception {
 		// TODO Auto-generated method stub

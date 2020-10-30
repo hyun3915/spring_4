@@ -32,6 +32,16 @@
         <td>${dto.regDate}</td>
         <td>${dto.hit}</td>
       </tr>
+      
+      <tr>
+      	<td>
+      	<c:forEach items="${dto.boardFileDTOs}" var="file">
+      		<td>
+      		<a href="./fileDown?fileName=${file.fileName}&oriName=${file.oriName}">${file.oriName}</a>
+      		</td>
+      	</c:forEach>
+      	</td>
+      </tr>
   
   </table>
   <input type="button" title="${dto.num}" value="Delete" class="btn btn-warning" id="del">

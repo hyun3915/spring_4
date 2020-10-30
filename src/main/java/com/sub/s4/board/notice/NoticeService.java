@@ -35,17 +35,24 @@ public class NoticeService implements BoardService {
 		File file = new File(path);
 		System.out.println(path);
 		
+		//Sequence 번호 받아오기, selectKey 써서 필요없음
+		//boardDTO.setNum(noticeDAO.getNum());
+		
 		//Notice Insert
 		int result = noticeDAO.setInsert(boardDTO);
+		System.out.println("Num: "+boardDTO.getNum());
 		
 		//NoticeFile Insert		
 		for(MultipartFile multipartFile:files) {
 			if(multipartFile.getSize()!=0) {
 				
 			String fileName = filesaver.saveCopy(file, multipartFile);
-			System.out.println(fileName);
 			
 			BoardFileDTO boardFileDTO = new BoardFileDTO();
+			boardFileDTO.setFileName(fileName);
+			boardFileDTO.setOriName(multipartFile.getOriginalFilename());
+			boardFileDTO.setNum(boardDTO.getNum());
+			
 			noticeDAO.setInsertFile(boardFileDTO);
 			
 			}
@@ -63,7 +70,7 @@ public class NoticeService implements BoardService {
 //			
 //		}
 		
-		return 0;
+		return result;
 	}
 
 	@Override
