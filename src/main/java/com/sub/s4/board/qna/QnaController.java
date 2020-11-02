@@ -1,5 +1,6 @@
 package com.sub.s4.board.qna;
 
+import java.io.File;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -26,11 +27,28 @@ public class QnaController {
 	@Autowired
 	private QnaService qnaService;
 	
+	@PostMapping("summernote")
+	public ModelAndView summernote(MultipartFile file,HttpSession session) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		
+		String fileName = qnaService.summernote(file, session);
+		System.out.println(fileName);
+		
+		String name = session.getServletContext().getContextPath()+File.separator;
+		name = name+"resources"+File.separator+"upload"+File.separator;
+		name = name+"qna"+File.separator+fileName;
+		System.out.println(name);
+		
+		mv.addObject("msg", fileName);
+		mv.setViewName("common/ajaxResult");
+		return mv;
+	}
+	
 	@GetMapping("fileDown")
 	public ModelAndView fileDown(BoardFileDTO boardFileDTO) throws Exception{
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("board", "qna");
-		mv.addObject("fileName",boardFileDTO);
+		mv.addObject("fileDTO",boardFileDTO);
 		mv.setViewName("fileDown");
 		return mv;
 	}

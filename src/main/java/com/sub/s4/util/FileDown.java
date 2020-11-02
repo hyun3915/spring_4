@@ -22,7 +22,7 @@ public class FileDown extends AbstractView{
 
 		String board = (String)model.get("board");
 		BoardFileDTO boardFileDTO = (BoardFileDTO)model.get("fileDTO");
-		
+		System.out.println(boardFileDTO.getFileName());
 		String path = request.getSession().getServletContext().getRealPath("/resources/upload/"+board);
 		
 		File file = new File(path, boardFileDTO.getFileName());
@@ -37,12 +37,13 @@ public class FileDown extends AbstractView{
 		String downName = URLEncoder.encode(boardFileDTO.getOriName(),"UTF-8");
 		
 		//header 설정
-		response.setHeader("Content-Disposition", "attachment:fileName\""+downName+"\"");
+		response.setHeader("Content-Disposition", "attachment;fileName\""+downName+"\"");
 		response.setHeader("Content-Transfer-Encoding", "binary");
 		
 		//Client로 전송
 		FileInputStream fi = new FileInputStream(file);
 		OutputStream os = response.getOutputStream();
+		
 		
 		FileCopyUtils.copy(fi, os);
 		

@@ -6,7 +6,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<c:import url="../template/bootStrap.jsp"></c:import> 
+<c:import url="../template/bootStrap.jsp"></c:import>
+<!-- include summernote css/js -->
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
  <style type="text/css"> 
  	#f { 
  		display: none; 
@@ -16,7 +19,8 @@
  		font-weight: bold; 
  		cursor: pointer; 
  	} 
- </style> 
+ </style>
+
  </head> 
 <body> 
 
@@ -40,18 +44,15 @@
       <label for="contents">Contents:</label>
       <textarea class="form-control" rows="5" id="contents" name ="contents"></textarea>
     </div>
-    <input type="button" value="FileAdd" class="btn btn-info" id="fileAdd">
-    
- <div id="files"> 
-
-</div>   
+        <input type="button" value="FileAdd" class="btn btn-info" id="fileAdd">
+ <div id="files"></div>
 <div class="form-group"> 
  <label></label> 
    <input type="button" class="btn btn-primary form-control" value="Write" id="btn"> 
    <button type="submit" class="btn btn-default form-control">Write</button> 
     </div> 
-</form> 
-   
+</form>  
+
 <div id="f"> 
   	  <div class="input-group"> 
        <input id="files" type="file" class="form-control" name="files"> 
@@ -59,16 +60,54 @@
      </div> 
   </div>   
 </div> 
+ 
+</div> 
 
 <script type="text/javascript">
 
 	var count = 0;
+
+	$('#contents').summernote({
+		height:300,
+		callbacks:{
+			onImageUpload: function(files, editor) {
+				var formData = new FormData(); //가상의 form태그 작성
+				formData.append('file',files[0]) //파라미터 이름을 file로
+				
+				$.ajax({
+					 type:"POST",
+                     url:"./summernote",
+                     data:formData,
+                     enctype:"multipart/form-data",
+                     cache:false,
+                     contentType:false,
+                     processData: false,
+                     success: function(data) {
+                        data=data.trim();
+                        alert(data);
+
+                        data="../resources/upload/${board}/"+data;
+                        $("#contents").summernote('editor.insertImage', data);
+
+					}
+				})
+			}//upload 끝
 	
+		}
+	});
+	
+	$('#btn').click(function() {
+		var contents = $('#contents').summernote('code');
+		alert(contents);
+	});
+	
+	$('#contents').summernote('code', 'Hello!');
+
 	$("#files").on("click",".del", function() {
 		$(this).parent().remove();
 		count--;
 	});
-	
+
 	$("#fileAdd").click(function() {
 		if(count<5){
 		var f = $("#f").html().trim();
