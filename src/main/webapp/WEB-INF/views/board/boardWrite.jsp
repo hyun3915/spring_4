@@ -24,7 +24,7 @@
  </head> 
 <body> 
 
-<c:import url="../template/header.jsp"></c:import>>
+<c:import url="../template/header.jsp"></c:import>
 
 
 <div class="container">
@@ -72,17 +72,17 @@
 		callbacks:{
 			onImageUpload: function(files, editor) {
 				var formData = new FormData(); //가상의 form태그 작성
-				formData.append('file',files[0]) //파라미터 이름을 file로
+				formData.append('file',files[0]); //파라미터 이름을 file로
 				
 				$.ajax({
-					 type:"POST",
-                     url:"./summernote",
                      data:formData,
-                     enctype:"multipart/form-data",
+					 type:"POST",
+                     url:'summernote',
+                     enctype:'multipart/form-data',
                      cache:false,
                      contentType:false,
                      processData: false,
-                     success: function(data) {
+                     	success: function(data) {
                         data=data.trim();
                         alert(data);
 
@@ -91,8 +91,30 @@
 
 					}
 				})
-			}//upload 끝
-	
+			},//upload 끝
+		
+			onMediaDelete: function(files){
+                var fileName =$(files[0]).attr("src");
+                var a=fileName.split("/");
+                fileName=a[a.length-1];
+               $.ajax({
+                  type:"POST",
+                   url:"./summernoteDelete",
+                   data:{
+                      file:fileName
+                   },
+                   success:function(data){
+                      if(data){
+                         alert("삭제 성공");
+                      }else{
+                         alert("삭제 실패");
+                      }
+                   }
+               });
+
+        
+     }
+			
 		}
 	});
 	

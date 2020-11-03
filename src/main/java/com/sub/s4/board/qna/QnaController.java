@@ -27,6 +27,15 @@ public class QnaController {
 	@Autowired
 	private QnaService qnaService;
 	
+	@PostMapping("summernoteDelete")
+	public ModelAndView summernoteDelete(String file, HttpSession session)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		boolean result = qnaService.summernoteDelete(file, session);
+		mv.addObject("msg", result);
+		mv.setViewName("common/ajaxResult");
+		return mv;
+	}
+	
 	@PostMapping("summernote")
 	public ModelAndView summernote(MultipartFile file,HttpSession session) throws Exception{
 		ModelAndView mv = new ModelAndView();

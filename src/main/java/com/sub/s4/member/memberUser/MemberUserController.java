@@ -141,6 +141,9 @@ public class MemberUserController {
 	@PostMapping(value = "memberLogin")
 	public ModelAndView getMemberLogin(MemberDTO memberDTO, HttpSession session) throws Exception{
 		ModelAndView mv = new ModelAndView();
+		
+		System.out.println(memberDTO.getId());
+		System.out.println(memberDTO.getPw());
 		memberDTO = memberUserService.getMemberLogin(memberDTO);
 		
 		if(memberDTO != null) {

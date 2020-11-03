@@ -24,6 +24,18 @@ public class QnaService implements BoardService {
 	@Autowired
 	private FileSaver fileSaver;
 	
+	public boolean summernoteDelete(String file, HttpSession session)throws Exception{
+		String path = session.getServletContext().getRealPath("/resources/upload/qna");
+		File file2 = new File(path, file);
+		boolean result = false;
+		if(file2.exists()) {
+			result=file2.delete();
+		}
+		
+		return result;
+	}
+
+	
 	public String summernote(MultipartFile file, HttpSession session) throws Exception{
 		//파일을 하드디스크에 저장하고 저장된 파일명을 리턴
 		String path = session.getServletContext().getRealPath("/resources/upload/qna");
