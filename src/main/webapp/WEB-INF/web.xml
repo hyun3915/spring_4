@@ -52,4 +52,20 @@
     <filter-name>NoticeFilter</filter-name>
     <url-pattern>/notice/*</url-pattern>
   </filter-mapping>
+  
+  <error-page>
+  	<error-code>404</error-code>
+  	<location>/error/error404</location>
+  </error-page>
+  
+    <error-page>
+  	<error-code>400</error-code>
+  	<location>/WEB-INF/views/error/error_front.jsp</location>
+  </error-page>
+  
+  <error-page>
+  	<error-code>500</error-code>
+  	<location>/WEB-INF/views/error/error_back.jsp</location>
+  </error-page>
+  
 </web-app>

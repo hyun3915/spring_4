@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -80,6 +81,14 @@ public class QnaController {
 		return mv;
 	}
 	
+	@ExceptionHandler(NullPointerException.class)
+	public ModelAndView ex1() {
+		ModelAndView mv = new ModelAndView();
+		System.out.println("Null Pointer");
+		mv.setViewName("error/error/back");
+		return mv;
+	}
+	
 	@GetMapping("qnaWrite")
 	public ModelAndView setInsert() throws Exception{
 		ModelAndView mv = new ModelAndView();
@@ -114,6 +123,7 @@ public class QnaController {
 		System.out.println("QnA One");
 		ModelAndView mv = new ModelAndView();
 		boardDTO = qnaService.getOne(boardDTO);
+		
 		if(boardDTO !=null) {
 			mv.setViewName("board/boardSelect");
 			mv.addObject("dto",boardDTO);

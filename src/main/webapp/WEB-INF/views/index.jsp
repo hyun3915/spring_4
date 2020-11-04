@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <html>
@@ -22,7 +24,11 @@
   </c:if>
   
   <img alt="main Image" src="./resources/images/index/suhyun.jpg">
+  
   </div>
+  
+  <a href="./cookie/makeCookie">MakeCookie</a>
+  
 </div>
 
 </body>
