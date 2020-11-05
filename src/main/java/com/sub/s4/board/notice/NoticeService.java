@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -20,6 +21,7 @@ import com.sub.s4.util.FileSaver;
 import com.sub.s4.util.Pager;
 
 @Service
+@Transactional
 public class NoticeService implements BoardService {
 	
 	@Autowired
