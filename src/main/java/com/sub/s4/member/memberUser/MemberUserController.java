@@ -148,16 +148,16 @@ public class MemberUserController {
 		
 		//remember값이 null이 아니라면 cookie를 발행
 		//cookie의 이름은 remember, 밸류는 로그인시 id
-		if(remember!=null) {
-			Cookie cookie = new Cookie("remember", memberDTO.getId());
-			cookie.setDomain("/member/memberLogin");
-			response.addCookie(cookie);
-		}else {
-			Cookie cookie = new Cookie("remember", "");
-			cookie.setDomain("/cookie/showCookie");
-			cookie.setMaxAge(0);
-			response.addCookie(cookie);
-		}
+//		if(remember!=null) {
+//			Cookie cookie = new Cookie("remember", memberDTO.getId());
+//			cookie.setDomain("/member/memberLogin");
+//			response.addCookie(cookie);
+//		}else {
+//			Cookie cookie = new Cookie("remember", "");
+//			cookie.setDomain("/cookie/showCookie");
+//			cookie.setMaxAge(0);
+//			response.addCookie(cookie);
+//		}
 		
 		System.out.println(memberDTO.getId());
 		System.out.println(memberDTO.getPw());
